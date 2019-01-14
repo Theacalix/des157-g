@@ -1,0 +1,128 @@
+body {
+  /*font goes here*/
+  background-color: #98CBDA;
+  font-family: 'IBM Plex Serif', serif;
+}
+
+/*HEADER*/
+header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 80%;
+  min-width: 1050px;
+  min-height: 250px;
+  margin: auto;
+}
+
+header h1 {
+  position: absolute;
+  left: .25em;
+  grid-column: 1;
+  text-align: right;
+}
+
+header h1:first-child {
+  left: .32em;
+  color: #001A49;
+  z-index: 2;
+}
+
+#mySketch {
+  grid-column: 2;
+  background-color: #028ABE;
+  width: 800px;
+  height: 250px;
+  margin: 3em;
+}
+
+/*MAIN*/
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  width: 80%;
+  margin: auto;
+}
+
+section {
+  background-color: #DEE8F1;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 2em;
+}
+
+main section:nth-child(1) {
+  grid-column: 1;
+  margin-left: 3em;
+}
+
+main section:nth-child(2) {
+  grid-column: 2;
+}
+
+main section:nth-child(3) {
+  grid-column: 3;
+  margin-right: 3em;
+}
+
+li {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+/*FOOTER*/
+footer p {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 1em;
+  margin-left: 3em;
+  z-index: 3;
+}
+
+footer img {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+}
+
+/* TYPE */
+h1 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 6em;
+  color: #028ABE;
+}
+
+h2 {
+  font-family: 'Amatic SC', cursive;
+  color: #001A49;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #028ABE;
+}
+
+footer a {
+  color: #001A49;
+}
+
+/* TYPE:
+font-family: 'Amatic SC', cursive;
+font-family: 'IBM Plex Serif', serif;
+font-family: 'IBM Plex Sans', sans-serif;
+*/
+/* COLORS:
+#DEE8F1
+#98CBDA
+#028ABE
+#054280
+#001A49
+*/
