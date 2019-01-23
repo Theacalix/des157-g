@@ -71,6 +71,18 @@ li {
   padding-bottom: 3px;
 }
 
+article {
+  margin-left: 30%;
+  margin-right: 10%;
+  width: 60%;
+  position: relative;
+  top: -14em;
+}
+
+article img {
+  width: 60%;
+}
+
 /*FOOTER*/
 footer p {
   position: fixed;
@@ -102,6 +114,17 @@ h2 {
   color: #001A49;
   font-weight: bold;
   font-size: 2em;
+}
+
+article h2 {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 2.5em;
+}
+
+h3 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 3em;
+  color: #028ABE;
 }
 
 a {
