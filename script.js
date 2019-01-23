@@ -21,7 +21,7 @@ function setup() {
   var myCanvas = createCanvas(800, 250);
   myCanvas.parent('mySketch');
   imageMode(CENTER);
-  fish = loadImage("fish.png");
+  fish = loadImage("images/fish.png");
   x1 = 0;
   x2 = -20;
   x3 = 100;
