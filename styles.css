@@ -83,6 +83,15 @@ article img {
   width: 60%;
 }
 
+article img+p {
+  font-style: italic;
+  font-size: .75em;
+}
+
+.wide {
+  width: 90%;
+}
+
 /*FOOTER*/
 footer p {
   position: fixed;
