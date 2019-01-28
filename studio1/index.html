@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Mansions and Monsters</title>
+  <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Homemade+Apple%7CUnifrakturCook:700%7CVolkhov:400,700i" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Mansions and Monsters</h1>
+    <h2>Choose your gear and enter the house to find out what mysterious things have been happening!</h2>
+  </header>
+
+  <main>
+    <form id="usrin">
+      <p>
+        <label for="adj1">Adjective</label>
+        <input type="text" name="adjective1" id="adj1">
+      </p>
+      <p>
+        <label for="person">Person</label>
+        <input type="text" name="person" id="person">
+      </p>
+      <p>
+        <label for="said">Said (synonym)</label>
+        <input type="text" name="said" id="said">
+      </p>
+      <p>
+        <label for="verb">Verb</label>
+        <input type="text" name="verb" id="verb">
+      </p>
+      <p>
+        <label for="adj2">Adjective</label>
+        <input type="text" name="adjective2" id="adj2">
+      </p>
+      <fieldset>
+        <legend>Choose your Weapon:</legend>
+        <p>
+          <input type="radio" name="weapon" id="ax">
+          <label for="ax">Battle Ax</label>
+        </p>
+        <p>
+          <input type="radio" name="weapon" id="sword">
+          <label for="sword">Great Sword</label>
+        </p>
+        <p>
+          <input type="radio" name="weapon" id="bow">
+          <label for="bow">Bow and Arrow</label>
+        </p>
+        <p>
+          <input type="radio" name="weapon" id="staff">
+          <label for="staff">Magic Staff</label>
+        </p>
+      </fieldset>
+    </form>
+
+    <section>
+      <input type="reset" value="Choose Again" form="usrin">
+      <input type="submit" value="Enter the House =>" form="usrin">
+    </section>
+
+    <p id="results"></p>
+  </main>
+
+  <footer>
+    <a href="https://validator.w3.org/check?uri=referer">Valid HTML 5</a>
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

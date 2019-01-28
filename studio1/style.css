@@ -1,0 +1,126 @@
+/*
+font-family: 'Homemade Apple', cursive;
+font-family: 'UnifrakturCook', cursive;
+font-family: 'Volkhov', serif;
+
+#49362D
+#FFFEAC
+#EECF6D
+#D5AC4E
+#6E0D25
+*/
+body {
+  background-color: #EECF6D;
+  font-family: 'Volkhov', serif;
+  color: #49362D;
+}
+
+header {
+  margin-left: 1em;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: auto 2em;
+}
+
+form {
+  grid-column: 1;
+  background-image: url("images/scroll.png");
+  background-size: cover;
+  padding: 1rem;
+  margin: auto;
+  width: 25.5vw;
+  height: 35vw;
+}
+
+form p {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+input[type=text] {
+  border: 1px solid #49362D;
+  border-radius: 4px;
+  background-color: #FFFEAC;
+}
+
+input[type=text]:focus {
+  border: 2px solid #49362D;
+}
+
+label {
+  display: block;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+fieldset p:nth-child(2) {
+  margin-top: .5rem;
+}
+
+fieldset label {
+  display: inline;
+}
+
+legend {
+  margin-left: 20%;
+}
+
+section {
+  grid-column: 1;
+  margin: 1em auto;
+}
+
+input[type=submit], input[type=reset] {
+  background-color: #6E0D25;
+  border-radius: 10px;
+  padding: 10px;
+  color: #FFFEAC;
+  border: none;
+  margin: .5rem;
+}
+
+main p {
+  grid-column: 2;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+/*TEXT STYLE*/
+h1 {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 6em;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+h2 {
+  font-style: italic;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+label {
+  font-style: italic;
+  font-weight: 700;
+}
+
+footer a {
+  color: #49362D;
+  text-decoration: none;
+}
+
+footer a:hover {
+  font-style: italic;
+}
