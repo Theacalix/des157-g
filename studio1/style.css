@@ -31,8 +31,8 @@ form {
   background-size: cover;
   padding: 1rem;
   margin: auto;
-  width: 25.5vw;
-  height: 35vw;
+  width: 359px;
+  height: 493px;
 }
 
 form p {
@@ -74,7 +74,7 @@ legend {
 
 section {
   grid-column: 1;
-  margin: 1em auto;
+  margin: .5rem auto 0 auto;
 }
 
 input[type=submit], input[type=reset] {
@@ -86,8 +86,18 @@ input[type=submit], input[type=reset] {
   margin: .5rem;
 }
 
-main p {
+article {
   grid-column: 2;
+  grid-row: 1;
+  background-color: #D5AC4E;
+  font-family: 'Homemade Apple', cursive;
+  font-size: 2em;
+  line-height: 2em;
+  padding: .5em;
+  border-radius: 10px;
+  margin: 0;
+  max-height: 500px;
+  /*overflow-y: auto;*/
 }
 
 footer {
@@ -95,6 +105,16 @@ footer {
   bottom: 0;
   right: 0;
   margin: 1rem;
+}
+
+.hide {
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.show {
+  opacity: 1;
+  transition: opacity 2s;
 }
 
 /*TEXT STYLE*/
