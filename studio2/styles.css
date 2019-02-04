@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #E1F4FD;
+  text-align: center;
+  font-family: 'PT Mono', monospace;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
+  margin: auto;
+}
+
+#draggable {
+  width: 200px;
+  margin: auto;
+}
+
+.dropzone {
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 192px;
+  max-height: 192px;
+  border: 1px solid #2E3192;
+  margin: .5em;
+  padding: 10px;
+}
+
+footer {
+  margin-top: 2em;
+}
+
+footer a {
+  text-decoration: none;
+  color: #2E3192;
+}
+
+@media screen and min-width(769px) {
+  section {
+    width: 60%;
+  }
+}
