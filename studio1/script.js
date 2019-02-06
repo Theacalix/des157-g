@@ -5,6 +5,7 @@ document.querySelector('#enter').addEventListener('click', getResults);
 document.querySelector('#clear').addEventListener('click', reset);
 
 function getResults(evt) {
+  evt.preventDefault();
   var results = document.querySelector('#results');
   var adj1 = document.querySelector('#adj1').value.toLowerCase();
   var person = document.querySelector('#person').value;
@@ -37,8 +38,6 @@ function getResults(evt) {
     attack + ' and rescue <strong>' + person + '</strong>.';
 
   results.className ='show';
-
-  evt.preventDefault();
 }
 
 function reset() {

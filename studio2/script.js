@@ -17,6 +17,7 @@ document.addEventListener("dragstart", function(event) {
   event.dataTransfer.setData('text/plain', null);
   getImg();
   img.src = 'images/' + newImg;
+  console.log('img: ' + img + img.src);
   event.dataTransfer.setDragImage(img, 10, 10);
 }, false);
 
