@@ -14,25 +14,39 @@ section {
   justify-content: center;
   width: 95%;
   margin: auto;
+  position: relative;
+  top: 200px;
 }
 
 #draggable {
   width: 200px;
-  margin: auto;
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .dropzone {
-  min-width: 100px;
+  /*min-width: 100px;
   min-height: 100px;
   max-width: 192px;
-  max-height: 192px;
+  max-height: 192px;*/
+  height: 20vw;
+  width: 20vw;
   border: 1px solid #2E3192;
   margin: .5em;
-  padding: 10px;
+  padding: .25em;
+}
+
+.dropzone img {
+  height: 100%;
+  width: 100%;
 }
 
 footer {
   margin-top: 2em;
+  position: relative;
+  top: 200px;
 }
 
 footer a {
@@ -41,7 +55,112 @@ footer a {
 }
 
 @media only screen and (min-width: 769px) {
-  section {
-    width: 60%;
+  footer {
+    position: static;
   }
+
+  .dropzone {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  section {
+    position: static;
+    display: grid;
+    grid-template-columns: fit-content(20%) fit-content(20%) fit-content(20%) fit-content(20%);
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+
+  .dropzone:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .dropzone:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .dropzone:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .dropzone:nth-child(4) {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .dropzone:nth-child(5) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .dropzone:nth-child(6) {
+    grid-column: 4;
+    grid-row: 2;
+  }
+
+  .dropzone:nth-child(7) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .dropzone:nth-child(8) {
+    grid-column: 4;
+    grid-row: 3;
+  }
+
+  .dropzone:nth-child(9) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .dropzone:nth-child(10) {
+    grid-column: 2;
+    grid-row: 4;
+  }
+
+  .dropzone:nth-child(11) {
+    grid-column: 3;
+    grid-row: 4;
+  }
+
+  .dropzone:nth-child(12) {
+    grid-column: 4;
+    grid-row: 4;
+  }
+
+  #draggable {
+    width: 100%;
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+    position: static;
+    transform: none;
+    align-self: center;
+  }
+
+  /*.top {
+    grid-column: 1 / 4;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .right {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .bot {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+  }*/
 }
