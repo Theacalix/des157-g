@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Final Project Research</title>
+  <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC%7CIBM+Plex+Sans%7CIBM+Plex+Serif" rel="stylesheet">
+  <link href="../../styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Emily<br>Hery</h1>
+    <!--Duplicate for shadow-->
+    <h1>Emily<br>Hery</h1>
+    <h2><a href="../../index.html">&#60; Back to Portal</a></h2>
+  </header>
+  <article>
+    <h2>Research on Suitable Libraries for Fantasy Map Creation Project</h2>
+    <p>
+      Since my project is an interactive map generator, I looked for javascript libraries or examples that were related to what I want to make so that I could research the form instead of the content of my project. I initially started looking for
+      javascript libraries related to interactive maps but discovered that most of them are geared towards real-world maps and data representations as opposed to fantasy based maps, which doesn’t work for my project.
+    </p>
+    <p>
+      For example, <a href="https://hackernoon.com/react-redux-with-mapbox-78fa3767211e">this article</a> talks about a data mapping project that projects on top of a map of the city of Portland, and how they use javascript to change the map as
+      users interact with it. However, I need something that can generate objects or images and allow users to place them on some sort of grid. So mapping libraries like Mapbox don’t seem that helpful to me. (It's very cool though and I used to live
+      in Portland so <a href="http://ryantm.io/buildings/">check it out!</a>)
+    </p>
+    <p>
+      I then realized that most of the maps used for dungeons are actually more similar to a floorplan or architects blueprints than a topographical outdoor map, so I next directed my research with that focus. I found <a href="https://gojs.net/latest/projects/floorplanner/FloorPlanner.html">this
+        example</a>, which is a floor plan made using the gojs library. The floorplan has a pannable window and each of the elements can be manipulated individually -very similar to what I’ll need to do. <a href="https://gojs.net/latest/index.html">Gojs</a>
+      is a library for building “diagrams and graphs for your users, from simple flowcharts and org charts to highly-specific industrial diagrams, SCADA and BPMN diagrams, medical diagrams like genograms, and more.” They appear to have a nice
+      structure for modeling different elements to create diagrams or blueprints. The floorplan example uses their model and node framework to store furniture, walls, and other architectural elements.
+    </p>
+    <p>
+      This is <a href="https://dciarletta.github.io/d3-floorplan/">another example</a> that I found, which uses the d3 library. This floor plan uses different layers to represent different things which can be toggled on and off. <a href="https://d3js.org/">D3</a>
+      is an alternative way to bind and access data, which follows all of the w3
+      standards and uses only HTML and CSS for visualization. It is an attempt to simplify some of the javascript needed to do things such as changing the color of all of your paragraphs for example. While not incredibly specific to my project, it
+      could be helpful.
+    </p>
+    <p>
+      Lastly, while looking for information about floor plans, I found a discussion of the js canvas versus svgs. While I may end up using both, I definitely think making my assests like doors, walls, etc out of svgs will be helpful. <a href="http://fabricjs.com/">Fabric.js</a>
+      is a
+      library for increased svg support and creation allowing for users to interact with elements and manipulate them.
+    </p>
+    <p>
+      While I may end up using more than one of these, or even other libraries, currently gojs and fabric.js seem the most relevant to my project. Gojs seems to have a nice structure to help me organize the elements in my project and build needed
+      dependencies. Whereas Fabric.js seems well geared towards the visual components of my project and some of the interaction that I will need.
+    </p>
+    <h3>Bibliography</h3>
+    <ul>
+      <li>McCullough, Ryan. “React/Redux with Mapbox – Hacker Noon.” Hacker Noon, Medium, 11 Oct. 2017, hackernoon.com/react-redux-with-mapbox-78fa3767211e.</li>
+      <li>“Floor Planner.” Gojs, Gojs, gojs.net/latest/projects/floorplanner/FloorPlanner.html.</li>
+      <li>“GoJS.” Org Chart Editor, Gojs, gojs.net/latest/index.html.</li>
+      <li>dciarletta. “Floor Plan (0.1.0).” Floor Plan - Local Coordinate Map Layers for D3.Js, Github, dciarletta.github.io/d3-floorplan/.</li>
+      <li>Bostock, Mike. “Data-Driven Documents.” D3.Js, d3.Js, d3js.org/.</li>
+      <li>“Fabric.js Is a Powerful and SimpleJavascript HTML5 Canvas Library.” Fabric.js Javascript Canvas Library, Fabric.js, fabricjs.com/.</li>
+    </ul>
+  </article>
+</body>
+
+</html>

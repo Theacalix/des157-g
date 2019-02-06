@@ -40,7 +40,7 @@ footer a {
   color: #2E3192;
 }
 
-@media screen and min-width(769px) {
+@media only screen and (min-width: 769px) {
   section {
     width: 60%;
   }
