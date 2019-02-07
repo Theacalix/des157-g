@@ -1,11 +1,16 @@
+'use strict';
+console.log('reading js');
+
 var dragged;
 var images = ['charger.svg', 'headphones.svg', 'keys.svg', 'laptop.svg', 'lunch.svg', 'mouse.svg', 'notebook.svg', 'pencilcase.svg', 'phone.svg', 'sketchbook.svg', 'umbrella.svg', 'waterbottle.svg'];
 var newImg;
+var idx;
 
 function getImg() {
-  num =  Math.floor(Math.random() * images.length);
-  console.log('num: ' + num);
-  newImg = images.splice(num, 1)[0];
+  //get image from array
+  idx =  Math.floor(Math.random() * images.length);
+  console.log('num: ' + idx);
+  newImg = images.slice(idx, idx + 1)[0];
   console.log('setting new image to: ' + newImg);
   console.log('images length: ' + images.length);
 }
@@ -22,9 +27,9 @@ document.addEventListener("dragstart", function(event) {
 }, false);
 
 document.addEventListener("dragend", function(event) {
-  // reset the transparency
-  //event.target.style.opacity = "";
+  console.log('inside dragend');
   if(images.length == 0) {
+    console.log('images is empty');
     dragged.draggable = 'false';
   }
 }, false);
@@ -62,6 +67,8 @@ document.addEventListener("drop", function(event) {
     nodeCopy.id = '';
     nodeCopy.src = 'images/' + newImg;
     event.target.appendChild(nodeCopy);
+    images.splice(idx, 1); //remove img from array
+    console.log('images length: ' + images.length);
   }
 
 }, false);
