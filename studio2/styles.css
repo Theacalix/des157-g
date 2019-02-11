@@ -54,14 +54,35 @@ footer a {
   color: #2E3192;
 }
 
+.active {
+  position: fixed;
+  /* It will make the element move around the screen even if its parent has overflow: hidden; */
+  left: 0;
+  /* It will position the element in the initial left position of the screen. */
+  top: 0;
+  /* It will position the element in the initial top position of the screen. */
+  will-change: transform;
+  /* Warns the browsers that something will change so the browser can make all needed optimizations to make it happen. */
+  z-index: 1;
+  /* It will move the active draggable item one level in the stacking order. */
+  pointer-events: none;
+  /* This is used to make the elementFromPoint() function see what is behind the draggable-item while it is moving. */
+  opacity: .75;
+}
+
+.hidden {
+  position: absolute;
+  left: -100%;
+}
+
 @media only screen and (min-width: 769px) {
   footer {
     position: static;
   }
 
   .dropzone {
-    width: 10vw;
-    height: 10vw;
+    height: 17vh;
+    width: 17vh;
   }
 
   section {
@@ -139,28 +160,11 @@ footer a {
     transform: none;
     align-self: center;
   }
-
-  /*.top {
-    grid-column: 1 / 4;
-    grid-row: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-  .left {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .right {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  .bot {
-    grid-column: 1 / 4;
-    grid-row: 3;
-    display: flex;
-    justify-content: center;
-  }*/
 }
+
+/* @media only screen and (min-width: 890px) {
+  .dropzone {
+    width: 10vh;
+    height: 10vh;
+  }
+} */
