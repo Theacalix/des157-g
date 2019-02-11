@@ -3,6 +3,7 @@ console.log('reading js');
 
 var dragged;
 var images = ['charger.svg', 'headphones.svg', 'keys.svg', 'laptop.svg', 'lunch.svg', 'mouse.svg', 'notebook.svg', 'pencilcase.svg', 'phone.svg', 'sketchbook.svg', 'umbrella.svg', 'waterbottle.svg'];
+var titles = ['charges my pc', 'cheap and functional', 'massive and jingly', 'my expensive boi', 'usually leftovers', 'wireless!', 'one section for each class', 'looks like mail, but actually has pens', 'also my wallet', 'sometimes gets drawn in', 'fancy and practical', 'not used enough'];
 var img;
 var idx;
 
@@ -21,9 +22,12 @@ function getImg() {
   //get image from array
   idx =  Math.floor(Math.random() * images.length);
   //console.log('num: ' + idx);
-  newImg = images.slice(idx, idx + 1)[0];
+  newImg = images[idx];
+  //console.log(images[idx]);
+  //console.log(titles[idx]);
   img.src = 'images/' + newImg;
   img.alt = setAlt(newImg);
+  img.title = img.alt + ': ' + titles[idx];
   img.className = 'active';
 
   const dropRect = document.querySelector('.dropzone').getBoundingClientRect();
@@ -118,6 +122,7 @@ document.addEventListener("drop", function(event) {
     img.removeAttribute('style');
     event.target.appendChild(img);
     images.splice(idx, 1); //remove img from array
+    titles.splice(idx, 1);
     //console.log('images length: ' + images.length);
   }
   else {
@@ -162,6 +167,7 @@ backpack.addEventListener('touchend', function(event) {
     img.removeAttribute('style');
     curDiv.appendChild(img);
     images.splice(idx, 1); //remove from array
+    titles.splice(idx, 1);
   }
   else {
     document.body.removeChild(img);
