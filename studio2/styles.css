@@ -65,7 +65,7 @@ footer a {
   /* Warns the browsers that something will change so the browser can make all needed optimizations to make it happen. */
   z-index: 1;
   /* It will move the active draggable item one level in the stacking order. */
-  pointer-events: none;
+  /* pointer-events: none; */
   /* This is used to make the elementFromPoint() function see what is behind the draggable-item while it is moving. */
   opacity: .75;
 }
