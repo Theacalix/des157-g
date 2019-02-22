@@ -35,12 +35,32 @@ header {
   margin-left: auto;
 }
 
+#active {
+  background-color: #cedad9;
+  border-top: 5px solid #6e7a73;
+  border-left: 5px solid #6e7a73;
+}
+
 .view {
   /* flex-grow: 3; */
   background-color: white;
   border: 5px solid #6e7a73;
   height: 80vh;
-  min-width: 60vw;
+  width: 60vw;
+  overflow: hidden;
+}
+
+.inner {
+  width: 70vw;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.box {
+  border: 1px solid #cedad9;
+  width: 100px;
+  height: 100px;
 }
 
 .items {
@@ -48,7 +68,7 @@ header {
   background-color: #9ea6a2;
   width: 30vw;
   height: 80vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .accordion {

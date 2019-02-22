@@ -7,6 +7,8 @@
   <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
+
 </head>
 
 <body>
@@ -15,26 +17,67 @@
   </header>
   <main>
     <nav class="mode">
-      <button><i class="fas fa-mouse-pointer"></i></button>
+      <button id="active"><i class="fas fa-mouse-pointer"></i></button>
       <button><i class="fas fa-arrows-alt"></i></button>
     </nav>
     <div class="view">
-
+      <div class="inner">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
     </div>
     <nav class="items">
       <button class="accordion"><i class="fas fa-caret-right"></i> Walls</button>
       <section>
-        <img src="images/wall.svg" alt="single wall">
-        <img src="images/corner.svg" alt=" corner wall">
-        <img src="images/box.svg" alt="u wall">
-        <img src="images/parallel.svg" alt="parallel wall">
+        <img class="tile" src="images/wall.svg" alt="single wall">
+        <img class="tile" src="images/corner.svg" alt=" corner wall">
+        <img class="tile" src="images/box.svg" alt="u wall">
+        <img class="tile" src="images/parallel.svg" alt="parallel wall">
       </section>
       <button class="accordion"><i class="fas fa-caret-right"></i> Doors</button>
       <section>
-        <img src="images/door.svg" alt="door">
-        <img src="images/arch.svg" alt="archway">
-        <img src="images/locked.svg" alt="locked door">
-        <img src="images/window.svg" alt="window">
+        <img class="tile" src="images/door.svg" alt="door">
+        <img class="tile" src="images/arch.svg" alt="archway">
+        <img class="tile" src="images/locked.svg" alt="locked door">
+        <img class="tile" src="images/window.svg" alt="window">
       </section>
       <button class="accordion"><i class="fas fa-caret-right"></i> Stairs</button>
       <section>
