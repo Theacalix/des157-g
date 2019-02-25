@@ -10,6 +10,7 @@
 //   }
 // });
 
+//ACCORDION MENU
 var acc = document.querySelectorAll('.accordion');
 
 for(var i = 0; i < acc.length; i++) {
@@ -27,5 +28,13 @@ for(var i = 0; i < acc.length; i++) {
       this.style.border = 'none';
       // console.log(icon);
     }
+  })
+}
+//MODE BUTTONS
+var but = document.querySelectorAll('.mode button');
+
+for(var i = 0; i < but.length; i++) {
+  but[i].addEventListener('click', function() {
+    
   })
 }

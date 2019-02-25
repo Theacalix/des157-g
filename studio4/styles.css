@@ -51,10 +51,10 @@ header {
 }
 
 .inner {
-  width: 70vw;
+  width: 100%;
   display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
+  flex-flow: row nowrap;
+  /* align-items: flex-start; */
 }
 
 .box {
