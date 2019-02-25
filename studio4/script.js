@@ -1,5 +1,14 @@
-'use strict';
-console.log('reading js');
+// import { Droppable }  from 'https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.min.js';
+// 'use strict';
+// console.log('reading js');
+//
+// const droppable = new Droppable(document.querySelectorAll('section .inner'), {
+//   draggable: '.tile',
+//   dropzone: '.box',
+//   mirror: {
+//     constrainDimensions: true,
+//   }
+// });
 
 var acc = document.querySelectorAll('.accordion');
 
