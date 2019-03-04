@@ -19,6 +19,7 @@ header {
   margin-left: 4em;
 }
 
+/*MODE BUTTONS  */
 .mode {
   /* flex-grow: .25; */
   width: 10vw;
@@ -33,14 +34,32 @@ header {
   display: block;
   width: 50px;
   margin-left: auto;
+  border-left: 5px solid #6e7a73;
+}
+
+.mode button:first-child {
+  border-top: 5px solid #6e7a73;
+  border-bottom: 2.5px solid #6e7a73;
+}
+
+.mode button:last-child {
+  border-top: 2.5px solid #6e7a73;
+  border-bottom: 5px solid #6e7a73;
 }
 
 #active {
   background-color: #cedad9;
-  border-top: 5px solid #6e7a73;
-  border-left: 5px solid #6e7a73;
+  /* border-top: 5px solid #6e7a73;
+  border-bottom: 5px solid #6e7a73;
+  border-left: 5px solid #6e7a73; */
 }
 
+/* #active1 {
+  background-color: #cedad9;
+  border-bottom: 5px solid #6e7a73;
+  border-left: 5px solid #6e7a73;
+} */
+/*MAP WINDOW  */
 .view {
   /* flex-grow: 3; */
   background-color: white;
@@ -54,13 +73,19 @@ header {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  /* align-items: flex-start; */
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .box {
   border: 1px solid #cedad9;
   width: 100px;
   height: 100px;
+}
+
+.grey {
+  background-color: #9ea6a2;
 }
 
 .items {
