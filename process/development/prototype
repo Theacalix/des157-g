@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Comp</title>
+  <title>Prototype</title>
   <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC%7CIBM+Plex+Sans%7CIBM+Plex+Serif" rel="stylesheet">
   <link href="../../styles.css" rel="stylesheet">
@@ -17,8 +17,10 @@
     <h2><a href="../../index.html">&#60; Back to Portal</a></h2>
   </header>
   <article>
-    <img src="../../images/comp1.png" alt="comp1">
-    <img src="../../images/comp2.jpg" alt="comp2">
+    <img src="../../images/prototype.jpg" alt="comp1">
+    <p>
+      Prototype of main page.
+    </p>
   </article>
   <footer>
     <img src="../../images/wave.png" alt="wave" width="1368" height="113">
