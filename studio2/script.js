@@ -20,7 +20,7 @@ function getImg() {
   var newImg;
   img = new Image();
   //get image from array
-  idx =  Math.floor(Math.random() * images.length);
+  idx = Math.floor(Math.random() * images.length);
   //console.log('num: ' + idx);
   newImg = images[idx];
   //console.log(images[idx]);
@@ -58,7 +58,7 @@ function changePos(curX, curY) {
   console.log('transform: ' + img.style.transform);
 }
 
-document.addEventListener("dragstart", function(event) {
+document.addEventListener('dragstart', function(event) {
   // store a ref. on the dragged elem
   console.log('inside dragstart');
   dragged = event.target;
@@ -75,44 +75,44 @@ document.addEventListener("dragstart", function(event) {
 document.addEventListener('dragend', function(event) {
   console.log('inside dragend');
 
-  if(images.length == 0) {
+  if (images.length == 0) {
     //console.log('images is empty');
     dragged.draggable = 'false';
   }
 }, false);
 
 /* events fired on the drop targets */
-document.addEventListener("dragover", function(event) {
+document.addEventListener('dragover', function(event) {
   // prevent default to allow drop
   console.log('inside dragover');
   changePos(event.pageX, event.pageY);
   event.preventDefault();
 }, false);
 
-document.addEventListener("dragenter", function(event) {
+document.addEventListener('dragenter', function(event) {
   // highlight potential drop target when the draggable element enters it
   console.log('inside dragenter');
-  if (event.target.className == "dropzone") {
-    event.target.style.background = "#E6E7E8";
+  if (event.target.className == 'dropzone') {
+    event.target.style.background = '#E6E7E8';
   }
 
 }, false);
 
-document.addEventListener("dragleave", function(event) {
+document.addEventListener('dragleave', function(event) {
   console.log('inside dragleave');
   // reset background of potential drop target when the draggable element leaves it
-  if (event.target.className == "dropzone") {
-    event.target.style.background = "";
+  if (event.target.className == 'dropzone') {
+    event.target.style.background = '';
   }
 
 }, false);
 
-document.addEventListener("drop", function(event) {
+document.addEventListener('drop', function(event) {
   // prevent default action (open as link for some elements)
   console.log('inside drop');
   event.preventDefault();
   // move dragged elem to the selected drop target
-  if (event.target.className == "dropzone") {
+  if (event.target.className == 'dropzone') {
     event.target.style.background = '';
     //dragged.parentNode.removeChild( dragged );
     // var nodeCopy = dragged.cloneNode(true);
@@ -124,8 +124,7 @@ document.addEventListener("drop", function(event) {
     images.splice(idx, 1); //remove img from array
     titles.splice(idx, 1);
     //console.log('images length: ' + images.length);
-  }
-  else {
+  } else {
     document.body.removeChild(img);
   }
 
@@ -151,7 +150,7 @@ backpack.addEventListener('touchmove', function(event) {
   curDiv = document.elementFromPoint(curX, curY);
   if (curDiv != lastActive) {
     if (curDiv.classList.contains('dropzone')) {
-      curDiv.style.background = "#E6E7E8";
+      curDiv.style.background = '#E6E7E8';
     }
     lastActive.style.background = '';
     lastActive = curDiv;
@@ -161,15 +160,14 @@ backpack.addEventListener('touchmove', function(event) {
 
 backpack.addEventListener('touchend', function(event) {
   //console.log('running touch end');
-  if(curDiv.classList.contains('dropzone')) {
+  if (curDiv.classList.contains('dropzone')) {
     curDiv.style.background = '';
     img.className = ''; //remove active
     img.removeAttribute('style');
     curDiv.appendChild(img);
     images.splice(idx, 1); //remove from array
     titles.splice(idx, 1);
-  }
-  else {
+  } else {
     document.body.removeChild(img);
   }
 
