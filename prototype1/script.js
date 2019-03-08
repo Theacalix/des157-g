@@ -13,7 +13,7 @@ console.log('reading js');
 var acc = document.querySelectorAll('.accordion');
 var but = document.querySelectorAll('.mode button');
 var inner = document.querySelector('.inner');
-var viewRect = document.querySelector('.view').getBoundingClientRect();
+var view = document.querySelector('.view');
 var boxRect = document.querySelector('.box').getBoundingClientRect();
 var cols = inner.childElementCount * boxRect.width;
 var rows = document.querySelector('.row').childElementCount * boxRect.height;
@@ -22,17 +22,20 @@ var offsetX = 0,
   offsetY = 0;
 var dragged, tiles = [],
   curTile = '';
+var rotateAmt = 1;
 
 console.log('cols: ' + cols);
 console.log('rows: ' + rows);
 
-document.addEventListener('load', function() {
-  document.addEventListener('dragstart', startDrag);
-  document.addEventListener('dragover', overDrag);
-  document.addEventListener('dragenter', enterDrag);
-  document.addEventListener('dragleave', leaveDrag);
-  document.addEventListener('drop', drop);
-});
+document.addEventListener('dragstart', startDrag);
+document.addEventListener('dragover', overDrag);
+document.addEventListener('dragenter', enterDrag);
+document.addEventListener('dragleave', leaveDrag);
+document.addEventListener('drop', drop);
+
+// window.addEventListener('resize', function() {
+//   viewRect = document.querySelector('.view').getBoundingClientRect();
+// });
 
 //ACCORDION MENU
 for (var i = 0; i < acc.length; i++) {
@@ -77,6 +80,7 @@ but[1].addEventListener('click', function() { //pan
   if (this.id != 'active') {
     this.id = 'active';
     but[0].id = '';
+    delesectTile();
     //remove drag events
     document.removeEventListener('dragstart', startDrag);
     document.removeEventListener('dragover', overDrag);
@@ -93,9 +97,11 @@ but[1].addEventListener('click', function() { //pan
   }
 });
 //CLICK MODE
+//drag and drop
 function startDrag(event) {
   console.log('startdrag');
   dragged = event.target;
+  delesectTile();
 }
 
 function overDrag(event) {
@@ -119,7 +125,7 @@ function leaveDrag(event) {
 function drop(event) {
   console.log('drop');
   event.preventDefault();
-
+  console.log(event.target);
   if (event.target.className = 'box') {
     event.target.style.border = '';
     var img = dragged.cloneNode();
@@ -129,29 +135,51 @@ function drop(event) {
     event.target.appendChild(img);
   }
 }
-
+//select tiles
 function selectTile() {
   if (curTile !== event.target) {
     delesectTile();
     curTile = event.target;
-    var icon = document.createElement('i');
-    icon.className = 'fas fa-undo fa-rotate-270';
-    event.target.parentElement.appendChild(icon);
-    icon.addEventListener('click', rotate);
+    //rotate
+    var rIcon = document.createElement('i');
+    rIcon.className = 'fas fa-undo fa-rotate-270';
+    event.target.parentElement.appendChild(rIcon);
+    rIcon.addEventListener('click', rotate);
+    //delete
+    var xIcon = document.createElement('i');
+    xIcon.className = 'fas fa-times';
+    event.target.parentElement.appendChild(xIcon);
+    xIcon.addEventListener('click', deleteTile);
   }
   event.stopPropagation(); //prevent calling cancel event
 }
 
 function delesectTile() {
-  console.log('deselecting');
+  // console.log('deselecting');
   if (curTile !== '' && curTile !== event.target) {
-    curTile.parentElement.removeChild(curTile.nextSibling);
+    curTile.parentElement.removeChild(curTile.nextSibling); //remove rotate
+    curTile.parentElement.removeChild(curTile.nextSibling); //remove delete
     curTile = '';
+    rotateAmt = 1; //reset for next rotate
   }
 }
 
-function rotate() {
+function rotate(event) {
   console.log('rotate');
+  // console.log(curTile);
+  console.log(rotateAmt * 90);
+  curTile.style.transform = 'rotate(' + (rotateAmt * 90) + 'deg)';
+
+  rotateAmt++;
+  if (rotateAmt > 3) {
+    rotateAmt = 0;
+  }
+  event.stopPropagation();
+}
+
+function deleteTile(event) {
+  curTile.parentElement.removeChild(curTile);
+  curTile = '';
 }
 //PAN MODE
 function startPan(event) {
@@ -175,10 +203,10 @@ function pan(event) {
   console.log('pan');
   var x = (event.clientX - initialX + offsetX);
   var y = (event.clientY - initialY + offsetY);
-  if (x <= 0 && x >= (viewRect.width - cols)) {
+  if (x <= 0 && x >= (view.clientWidth - cols)) {
     this.style.left = x + 'px';
   }
-  if (y <= 0 && y >= (viewRect.height - rows)) {
+  if (y <= 0 && y >= (view.clientHeight - rows)) {
     this.style.top = y + 'px';
   }
 }

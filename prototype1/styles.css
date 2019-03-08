@@ -1,0 +1,194 @@
+/* #9eb5b3	(158,181,179)
+#9ea6a2	(158,166,162)
+#cae2d4	(158,181,168)
+#6e7a73	(110,122,115)
+#cedad9 (206,218,217)
+font-family: 'Sigmar One', cursive;
+font-family: 'Roboto Condensed', sans-serif;
+*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #cedad9;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+main {
+  display: flex;
+}
+
+header {
+  margin-left: 4em;
+}
+
+h1 {
+  font-family: 'Sigmar One', cursive;
+  font-size: 3em;
+  margin: .5em;
+  margin-bottom: .25em;
+}
+
+/*MODE BUTTONS  */
+.mode {
+  /* flex-grow: .25; */
+  width: 10vw;
+}
+
+.mode button {
+  background-color: #6e7a73;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  outline: none;
+  display: block;
+  width: 50px;
+  margin-left: auto;
+  border-left: 5px solid #6e7a73;
+}
+
+.mode button:first-child {
+  border-top: 5px solid #6e7a73;
+  border-bottom: 2.5px solid #6e7a73;
+}
+
+.mode button:last-child {
+  border-top: 2.5px solid #6e7a73;
+  border-bottom: 5px solid #6e7a73;
+}
+
+#active {
+  background-color: #cedad9;
+  /* border-top: 5px solid #6e7a73;
+  border-bottom: 5px solid #6e7a73;
+  border-left: 5px solid #6e7a73; */
+}
+
+/* #active1 {
+  background-color: #cedad9;
+  border-bottom: 5px solid #6e7a73;
+  border-left: 5px solid #6e7a73;
+} */
+/*MAP WINDOW  */
+.view {
+  /* flex-grow: 3; */
+  background-color: white;
+  border: 5px solid #6e7a73;
+  height: 80vh;
+  width: 60vw;
+  overflow: hidden;
+}
+
+.inner {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  border: 1px solid #cedad9;
+  width: 100px;
+  height: 100px;
+}
+
+.grey {
+  background-color: #9ea6a2;
+}
+
+.items {
+  /* flex-grow: .5; */
+  background-color: #9ea6a2;
+  width: 30vw;
+  height: 72vh;
+  overflow-y: auto;
+}
+
+.accordion {
+  background-color: #9ea6a2;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 2px solid #cedad9;
+  outline: none;
+}
+
+.accordion:hover {
+  background-color: #6e7a73;
+}
+
+nav section {
+  background-color: white;
+  display: none;
+  overflow: hidden;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.first {
+  display: flex;
+}
+
+.accordion:first-child {
+  border: none;
+}
+
+.doors img {
+  z-index: 2;
+}
+
+section img {
+  width: 100px;
+  height: 100px;
+  padding: 2px;
+  margin: .5em;
+  border: 2px dashed #cedad9;
+}
+
+.done {
+  height: 8vh;
+  background-color: #9ea6a2;
+  padding: .5em 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.done button {
+  background-color: #cedad9;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  outline: none;
+  /* width: 50px; */
+  /* margin-left: auto; */
+  border: 2px solid #6e7a73;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+  margin-bottom: .5em;
+}
+
+.fa-undo {
+  position: relative;
+  top: -125px;
+  left: -25px;
+}
+
+.fa-times {
+  position: relative;
+  top: -125px;
+  left: 90px;
+}
