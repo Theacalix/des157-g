@@ -23,6 +23,7 @@ var offsetX = 0,
 var dragged, tiles = [],
   curTile = '';
 var rotateAmt = 1;
+var storage = window.localStorage;
 
 console.log('cols: ' + cols);
 console.log('rows: ' + rows);
@@ -34,6 +35,11 @@ document.addEventListener('dragleave', leaveDrag);
 document.addEventListener('drop', drop);
 document.addEventListener('click', delesectTile);
 
+document.querySelector('#reset').addEventListener('click', function() {
+  console.log('clearing storage');
+  storage.clear();
+  location.reload();
+});
 // window.addEventListener('resize', function() {
 //   viewRect = document.querySelector('.view').getBoundingClientRect();
 // });
@@ -134,40 +140,59 @@ function drop(event) {
     event.target.style.border = '';
     tile = getTile();
     event.target.appendChild(tile);
+    if (dragged.parentNode.className == 'box') {
+      curTile = dragged;
+      deleteTile();
+    }
+    storage.setItem(event.target.id, tile.id);
   } else if (event.target.nodeName == 'IMG') {
     var targetType = event.target.className;
     var dropType = dragged.className;
     var parent = event.target.parentNode;
+    var count = parent.childElementCount;
     console.log('target: ' + targetType);
     console.log('item: ' + dropType);
     tile = getTile();
-    var count = parent.childElementCount;
+    if (dragged.parentNode.className == 'box') {
+      curTile = dragged;
+      deleteTile();
+    }
 
     if (dropType == 'replace' && targetType == 'replace') {
       parent.appendChild(tile);
       parent.removeChild(event.target);
+      storage.setItem(parent.id, tile.id);
     } else if (dropType == 'replace') { //targetType = layer
       var noReplace = true;
+      var store = '';
       for (var i = 0; i < parent.children.length; i++) {
         if (parent.children[i].className == 'replace') {
           tile.style.top = parent.children[i].style.top;
           parent.replaceChild(tile, parent.children[i]);
           noReplace = false;
+          store += ',' + tile.id;
+        } else {
+          store += ',' + parent.children[i].id;
         }
       }
       if (noReplace) {
         tile.style.top = (-100 * count) + 'px';
         parent.appendChild(tile);
+        store += ',' + tile.id;
       }
+      storage.setItem(parent.id, store);
     } else { //dropType = layer
       tile.style.top = (-100 * count) + 'px';
       parent.appendChild(tile);
+      storage.setItem(parent.id, storage.getItem(parent.id) + ',' + tile.id);
     }
   }
 }
 
 function getTile() {
   var tile = dragged.cloneNode();
+  tile.style.top = 0;
+  tile.style.left = 0;
   tile.setAttribute('draggable', false);
   tiles.push(tile); //used to add event listeners later
   tile.addEventListener('click', selectTile);
@@ -178,7 +203,8 @@ function selectTile() {
   if (curTile !== event.target) {
     delesectTile();
     curTile = event.target;
-    parent = event.target.parentElement;
+    parent = event.target.parentNode;
+    curTile.setAttribute('draggable', true);
     //delete
     var xIcon = document.createElement('i');
     xIcon.className = 'fas fa-times';
@@ -201,8 +227,9 @@ function selectTile() {
 function delesectTile() {
   // console.log('deselecting');
   if (curTile !== '' && curTile !== event.target) {
-    curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove rotate
-    curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove delete
+    curTile.parentNode.removeChild(curTile.parentNode.children[0]); //remove rotate
+    curTile.parentNode.removeChild(curTile.parentNode.children[0]); //remove delete
+    curTile.setAttribute('draggable', false);
     curTile = '';
     rotateAmt = 1; //reset for next rotate
   }
@@ -222,11 +249,16 @@ function rotate(event) {
 }
 
 function deleteTile(event) {
-  curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove rotate
-  curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove delete
+  var parent = curTile.parentNode;
+  parent.removeChild(parent.children[0]); //remove rotate
+  parent.removeChild(parent.children[0]); //remove delete
   rotateAmt = 1;
-  curTile.parentElement.removeChild(curTile);
+  parent.removeChild(curTile);
   curTile = '';
+  //NEED TP UPDATE localStorage
+  for (var i = 0; i < parent.children.length; i++) {
+    parent.children[i].style.top = (-100 * i) + 'px';
+  } //fix offset
 }
 //PAN MODE
 function startPan(event) {
