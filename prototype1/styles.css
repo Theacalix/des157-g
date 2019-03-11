@@ -138,16 +138,21 @@ nav section {
   border: none;
 }
 
-.doors img {
-  z-index: 2;
-}
-
 section img {
   width: 100px;
   height: 100px;
   padding: 2px;
   margin: .5em;
   border: 2px dashed #cedad9;
+}
+
+.layer {
+  z-index: 2;
+  position: relative;
+}
+
+.replace {
+  position: relative;
 }
 
 .done {
@@ -181,14 +186,7 @@ footer a {
   margin-bottom: .5em;
 }
 
-.fa-undo {
-  position: relative;
-  top: -125px;
-  left: -25px;
-}
-
-.fa-times {
-  position: relative;
-  top: -125px;
-  left: 90px;
+.fa-undo, .fa-times {
+  position: absolute;
+  z-index: 3;
 }

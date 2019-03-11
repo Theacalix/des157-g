@@ -32,6 +32,7 @@ document.addEventListener('dragover', overDrag);
 document.addEventListener('dragenter', enterDrag);
 document.addEventListener('dragleave', leaveDrag);
 document.addEventListener('drop', drop);
+document.addEventListener('click', delesectTile);
 
 // window.addEventListener('resize', function() {
 //   viewRect = document.querySelector('.view').getBoundingClientRect();
@@ -126,30 +127,73 @@ function drop(event) {
   console.log('drop');
   event.preventDefault();
   console.log(event.target);
-  if (event.target.className = 'box') {
+  console.log(event.target.nodeName);
+  var tile;
+
+  if (event.target.className == 'box') {
     event.target.style.border = '';
-    var img = dragged.cloneNode();
-    img.setAttribute('draggable', false);
-    tiles.push(img);
-    img.addEventListener('click', selectTile);
-    event.target.appendChild(img);
+    tile = getTile();
+    event.target.appendChild(tile);
+  } else if (event.target.nodeName == 'IMG') {
+    var targetType = event.target.className;
+    var dropType = dragged.className;
+    var parent = event.target.parentNode;
+    console.log('target: ' + targetType);
+    console.log('item: ' + dropType);
+    tile = getTile();
+    var count = parent.childElementCount;
+
+    if (dropType == 'replace' && targetType == 'replace') {
+      parent.appendChild(tile);
+      parent.removeChild(event.target);
+    } else if (dropType == 'replace') { //targetType = layer
+      var noReplace = true;
+      for (var i = 0; i < parent.children.length; i++) {
+        if (parent.children[i].className == 'replace') {
+          tile.style.top = parent.children[i].style.top;
+          parent.replaceChild(tile, parent.children[i]);
+          noReplace = false;
+        }
+      }
+      if (noReplace) {
+        tile.style.top = (-100 * count) + 'px';
+        parent.appendChild(tile);
+      }
+    } else { //dropType = layer
+      tile.style.top = (-100 * count) + 'px';
+      parent.appendChild(tile);
+    }
   }
+}
+
+function getTile() {
+  var tile = dragged.cloneNode();
+  tile.setAttribute('draggable', false);
+  tiles.push(tile); //used to add event listeners later
+  tile.addEventListener('click', selectTile);
+  return tile;
 }
 //select tiles
 function selectTile() {
   if (curTile !== event.target) {
     delesectTile();
     curTile = event.target;
-    //rotate
-    var rIcon = document.createElement('i');
-    rIcon.className = 'fas fa-undo fa-rotate-270';
-    event.target.parentElement.appendChild(rIcon);
-    rIcon.addEventListener('click', rotate);
+    parent = event.target.parentElement;
     //delete
     var xIcon = document.createElement('i');
     xIcon.className = 'fas fa-times';
-    event.target.parentElement.appendChild(xIcon);
+    xIcon.style.top = (parent.offsetTop) + 'px';
+    xIcon.style.left = (parent.offsetLeft + 100) + 'px';
+
+    parent.insertAdjacentElement('afterbegin', xIcon);
     xIcon.addEventListener('click', deleteTile);
+    //rotate
+    var rIcon = document.createElement('i');
+    rIcon.className = 'fas fa-undo fa-rotate-270 fa-sm';
+    rIcon.style.top = (parent.offsetTop + xIcon.offsetHeight) + 'px';
+    rIcon.style.left = (parent.offsetLeft + 100) + 'px';
+    parent.insertAdjacentElement('afterbegin', rIcon);
+    rIcon.addEventListener('click', rotate);
   }
   event.stopPropagation(); //prevent calling cancel event
 }
@@ -157,8 +201,8 @@ function selectTile() {
 function delesectTile() {
   // console.log('deselecting');
   if (curTile !== '' && curTile !== event.target) {
-    curTile.parentElement.removeChild(curTile.nextSibling); //remove rotate
-    curTile.parentElement.removeChild(curTile.nextSibling); //remove delete
+    curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove rotate
+    curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove delete
     curTile = '';
     rotateAmt = 1; //reset for next rotate
   }
@@ -178,6 +222,9 @@ function rotate(event) {
 }
 
 function deleteTile(event) {
+  curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove rotate
+  curTile.parentElement.removeChild(curTile.parentElement.children[0]); //remove delete
+  rotateAmt = 1;
   curTile.parentElement.removeChild(curTile);
   curTile = '';
 }
