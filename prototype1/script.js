@@ -21,13 +21,15 @@ var initialX, initialY;
 var offsetX = 0,
   offsetY = 0;
 var dragged, tiles = [],
-  curTile = '';
-var rotateAmt = 1;
+  curTile = '',
+  storeTile;
+var rotateAmt = 0;
 var storage = window.localStorage;
 
 console.log('cols: ' + cols);
 console.log('rows: ' + rows);
 
+window.addEventListener('load', getLocal);
 document.addEventListener('dragstart', startDrag);
 document.addEventListener('dragover', overDrag);
 document.addEventListener('dragenter', enterDrag);
@@ -40,10 +42,39 @@ document.querySelector('#reset').addEventListener('click', function() {
   storage.clear();
   location.reload();
 });
-// window.addEventListener('resize', function() {
-//   viewRect = document.querySelector('.view').getBoundingClientRect();
-// });
 
+function getLocal(event) {
+  console.log('page loaded');
+  var keys = Object.keys(storage),
+    key, box, items, tile;
+
+  for (var i = 0; key = keys[i]; i++) {
+    box = document.querySelector('#' + key);
+    items = storage.getItem(key);
+    items = items.split(',');
+    console.log(key);
+    console.log(items);
+    for (var j = 0; j < items.length; j++) {
+      if (items[j] != '') {
+        var item = items[j].split(';');
+        console.log(item);
+        tile = document.querySelector('#' + item[0]);
+        tile = getTile(tile);
+        tile.style.top = (-100 * j) + 'px';
+        if (rotateAmt = item[1]) {
+          curTile = tile;
+          rotateAmt--;
+          rotate(event);
+          box.appendChild(curTile);
+        } else {
+          box.appendChild(tile);
+        }
+      }
+    }
+    rotateAmt = 0;
+    curTile = '';
+  }
+}
 //ACCORDION MENU
 for (var i = 0; i < acc.length; i++) {
   acc[i].addEventListener('click', function() {
@@ -108,6 +139,13 @@ but[1].addEventListener('click', function() { //pan
 function startDrag(event) {
   console.log('startdrag');
   dragged = event.target;
+  if (dragged.parentNode.className == 'box') {
+    var index = Array.from(dragged.parentNode.children).indexOf(dragged) - 2; //for selected
+    storeTile = getItems(dragged)[index];
+    console.log(storeTile);
+  } else {
+    storeTile = dragged.id;
+  }
   delesectTile();
 }
 
@@ -116,14 +154,14 @@ function overDrag(event) {
 }
 
 function enterDrag(event) {
-  console.log('enterDrag');
+  // console.log('enterDrag');
   if (event.target.className == 'box') {
     event.target.style.border = '2px solid #ccc';
   }
 }
 
 function leaveDrag(event) {
-  console.log('leaveDrag');
+  // console.log('leaveDrag');
   if (event.target.className == 'box') {
     event.target.style.border = '';
   }
@@ -132,71 +170,89 @@ function leaveDrag(event) {
 function drop(event) {
   console.log('drop');
   event.preventDefault();
-  console.log(event.target);
-  console.log(event.target.nodeName);
+  // console.log(event.target);
+  // console.log(event.target.nodeName);
+  console.log(storeTile);
   var tile;
-
-  if (event.target.className == 'box') {
-    event.target.style.border = '';
-    tile = getTile();
-    event.target.appendChild(tile);
+  if (event.target.className == 'box' || event.target.nodeName == 'IMG') { //we are going to drop sucessfully
     if (dragged.parentNode.className == 'box') {
       curTile = dragged;
       deleteTile();
     }
-    storage.setItem(event.target.id, tile.id);
-  } else if (event.target.nodeName == 'IMG') {
-    var targetType = event.target.className;
-    var dropType = dragged.className;
-    var parent = event.target.parentNode;
-    var count = parent.childElementCount;
-    console.log('target: ' + targetType);
-    console.log('item: ' + dropType);
-    tile = getTile();
-    if (dragged.parentNode.className == 'box') {
-      curTile = dragged;
-      deleteTile();
-    }
+    if (event.target.className == 'box') {
+      event.target.style.border = '';
+      tile = getTile(dragged);
+      event.target.appendChild(tile);
+      storage.setItem(event.target.id, storeTile);
+      console.log(event.target.id + ',' + storeTile);
+    } else if (event.target.nodeName == 'IMG') {
+      var targetType = event.target.className;
+      var dropType = dragged.className;
+      var parent = event.target.parentNode;
+      var count = parent.childElementCount;
+      // console.log('target: ' + targetType);
+      // console.log('item: ' + dropType);
+      tile = getTile(dragged);
 
-    if (dropType == 'replace' && targetType == 'replace') {
-      parent.appendChild(tile);
-      parent.removeChild(event.target);
-      storage.setItem(parent.id, tile.id);
-    } else if (dropType == 'replace') { //targetType = layer
-      var noReplace = true;
-      var store = '';
-      for (var i = 0; i < parent.children.length; i++) {
-        if (parent.children[i].className == 'replace') {
-          tile.style.top = parent.children[i].style.top;
-          parent.replaceChild(tile, parent.children[i]);
-          noReplace = false;
-          store += ',' + tile.id;
-        } else {
-          store += ',' + parent.children[i].id;
+      if (dropType == 'replace' && targetType == 'replace') {
+        parent.appendChild(tile);
+        parent.removeChild(event.target);
+        storage.setItem(parent.id, storeTile);
+      } else if (dropType == 'replace') { //targetType = layer
+        var noReplace = true;
+        var store = '';
+        var items = storage.getItem(parent.id);
+        items = items.split(',');
+        for (var i = 0; i < parent.children.length; i++) {
+          if (parent.children[i].className == 'replace') {
+            tile.style.top = parent.children[i].style.top;
+            parent.replaceChild(tile, parent.children[i]);
+            noReplace = false;
+            if (i == 0) {
+              store = storeTile;
+            } else {
+              store += ',' + storeTile;
+            }
+          } else {
+            if (i == 0) {
+              store = items[i];
+            } else {
+              store += ',' + items[i];
+            }
+          }
         }
-      }
-      if (noReplace) {
+        if (noReplace) {
+          tile.style.top = (-100 * count) + 'px';
+          parent.appendChild(tile);
+          store += ',' + storeTile;
+        }
+        // console.log(store);
+        storage.setItem(parent.id, store);
+      } else { //dropType = layer
         tile.style.top = (-100 * count) + 'px';
         parent.appendChild(tile);
-        store += ',' + tile.id;
+        // console.log(storeTile);
+        storage.setItem(parent.id, storage.getItem(parent.id) + ',' + storeTile);
       }
-      storage.setItem(parent.id, store);
-    } else { //dropType = layer
-      tile.style.top = (-100 * count) + 'px';
-      parent.appendChild(tile);
-      storage.setItem(parent.id, storage.getItem(parent.id) + ',' + tile.id);
+      console.log('Storing: ' + parent.id + ',' + storage.getItem(parent.id));
     }
   }
 }
 
-function getTile() {
-  var tile = dragged.cloneNode();
+function getTile(toCopy) {
+  var tile = toCopy.cloneNode();
   tile.style.top = 0;
   tile.style.left = 0;
   tile.setAttribute('draggable', false);
   tiles.push(tile); //used to add event listeners later
   tile.addEventListener('click', selectTile);
   return tile;
+}
+
+function getItems(tile) {
+  var items = storage.getItem(tile.parentNode.id);
+  items = items.split(',');
+  return items;
 }
 //select tiles
 function selectTile() {
@@ -205,6 +261,13 @@ function selectTile() {
     curTile = event.target;
     parent = event.target.parentNode;
     curTile.setAttribute('draggable', true);
+    var index = Array.from(curTile.parentNode.children).indexOf(curTile);
+    var item = getItems(curTile)[index].split(';');
+    if (rotateAmt = item[1]) {
+      // console.log(rotateAmt);
+    } else {
+      rotateAmt = 0;
+    }
     //delete
     var xIcon = document.createElement('i');
     xIcon.className = 'fas fa-times';
@@ -230,21 +293,32 @@ function delesectTile() {
     curTile.parentNode.removeChild(curTile.parentNode.children[0]); //remove rotate
     curTile.parentNode.removeChild(curTile.parentNode.children[0]); //remove delete
     curTile.setAttribute('draggable', false);
+    //save rotate
+    var index = Array.from(curTile.parentNode.children).indexOf(curTile);
+    var store = '';
+    var items = getItems(curTile);
+    items.splice(index, 1, curTile.id + ';' + rotateAmt); //replace with rotate
+    store = items[0];
+    for (var i = 1; i < items.length; i++) {
+      store += ',' + items[i];
+    }
+    // console.log(store);
+    storage.setItem(parent.id, store);
+
     curTile = '';
-    rotateAmt = 1; //reset for next rotate
+    rotateAmt = 0; //reset for next rotate
   }
 }
 
 function rotate(event) {
   console.log('rotate');
-  // console.log(curTile);
-  console.log(rotateAmt * 90);
-  curTile.style.transform = 'rotate(' + (rotateAmt * 90) + 'deg)';
-
   rotateAmt++;
   if (rotateAmt > 3) {
     rotateAmt = 0;
   }
+  // console.log(curTile);
+  // console.log(rotateAmt * 90);
+  curTile.style.transform = 'rotate(' + (rotateAmt * 90) + 'deg)';
   event.stopPropagation();
 }
 
@@ -252,14 +326,30 @@ function deleteTile(event) {
   var parent = curTile.parentNode;
   parent.removeChild(parent.children[0]); //remove rotate
   parent.removeChild(parent.children[0]); //remove delete
-  rotateAmt = 1;
+  var index = Array.from(parent.children).indexOf(curTile);
+  // console.log(index);
   parent.removeChild(curTile);
+  rotateAmt = 0;
   curTile = '';
-  //NEED TP UPDATE localStorage
-  for (var i = 0; i < parent.children.length; i++) {
-    parent.children[i].style.top = (-100 * i) + 'px';
-  } //fix offset
+  //NEED TO UPDATE localStorage
+  if (parent.children.length != 0) {
+    for (var i = 0; i < parent.children.length; i++) {
+      parent.children[i].style.top = (-100 * i) + 'px';
+    } //fix offset
+    var store = '';
+    var items = getItems(curTile);
+    items.splice(index, 1); //remove item to delete
+    store = items[0];
+    for (var i = 1; i < items.length; i++) {
+      store += ',' + items[i];
+    }
+    // console.log(store);
+    storage.setItem(parent.id, store);
+  } else { //no children;
+    storage.removeItem(parent.id);
+  }
 }
+
 //PAN MODE
 function startPan(event) {
   console.log('startPan');
@@ -273,8 +363,8 @@ function startPan(event) {
     offsetY = 0;
   }
 
-  console.log('X: ' + offsetX);
-  console.log('Y: ' + offsetY);
+  // console.log('X: ' + offsetX);
+  // console.log('Y: ' + offsetY);
   inner.addEventListener('mousemove', pan);
 }
 
