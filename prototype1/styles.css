@@ -190,3 +190,30 @@ footer a {
   position: absolute;
   z-index: 3;
 }
+
+.display header {
+  position: absolute;
+  top: 1.5rem;
+  left: 1rem;
+  z-index: 2;
+  margin: 0;
+}
+
+.display h1 {
+  font-size: 2em;
+  display: inline;
+  background-color: #cedad9;
+  border: 5px solid #6e7a73;
+  padding: 0 .5rem;
+  margin: 0;
+}
+
+.display .view {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+}
+
+.tiles {
+  display: none;
+}
