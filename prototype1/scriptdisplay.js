@@ -2,7 +2,7 @@ import {
   getLocal,
   startPan,
   endPan
-} from '/modulefunc.js';
+} from './modulefunc.js';
 
 // var storage = window.localStorage;
 // var curTile,

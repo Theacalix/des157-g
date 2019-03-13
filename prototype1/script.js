@@ -1,6 +1,6 @@
 'use strict';
 console.log('reading js');
-import * as m from '/modulefunc.js';
+import * as m from './modulefunc.js';
 const acc = document.querySelectorAll('.accordion');
 const but = document.querySelectorAll('.mode button');
 const inner = document.querySelector('.inner');
