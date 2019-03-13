@@ -2,7 +2,7 @@ import {
   getLocal,
   startPan,
   endPan
-} from 'https://theacalix.github.io/des157-g/prototype1/modulefunc.js';
+} from '/des157-g/prototype2/modulefunc.js';
 
 // var storage = window.localStorage;
 // var curTile,
