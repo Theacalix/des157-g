@@ -18,29 +18,32 @@ function getLocal(event) {
     key, box, items, tile, rotateAmt;
 
   for (var i = 0; key = keys[i]; i++) {
-    box = document.querySelector('#' + key);
-    items = storage.getItem(key);
-    items = items.split(',');
-    console.log(key);
-    console.log(items);
-    for (var j = 0; j < items.length; j++) {
-      if (items[j] != '') {
-        var item = items[j].split(';');
-        console.log(item);
-        tile = document.querySelector('#' + item[0]);
-        tile = getTile(tile);
-        tile.style.top = (-100 * j) + 'px';
-        if (rotateAmt = item[1]) {
-          rotateAmt--;
-          rotate(rotateAmt, tile);
-          box.appendChild(tile);
-        } else {
-          box.appendChild(tile);
+    if (key != 'show' && key != 'hide') {
+      console.log('key ' + key);
+      box = document.querySelector('#' + key);
+      items = storage.getItem(key);
+      items = items.split(',');
+      console.log(key);
+      console.log(items);
+      for (var j = 0; j < items.length; j++) {
+        if (items[j] != '') {
+          var item = items[j].split(';');
+          console.log(item);
+          tile = document.querySelector('#' + item[0]);
+          tile = getTile(tile);
+          tile.style.top = (-100 * j) + 'px';
+          if (rotateAmt = item[1]) {
+            rotateAmt--;
+            rotate(rotateAmt, tile);
+            box.appendChild(tile);
+          } else {
+            box.appendChild(tile);
+          }
         }
       }
+      rotateAmt = 0;
+      curTile = '';
     }
-    rotateAmt = 0;
-    curTile = '';
   }
 }
 
@@ -112,4 +115,5 @@ export {
   startPan,
   endPan,
   tiles,
+  storage
 };

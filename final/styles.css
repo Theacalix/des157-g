@@ -107,6 +107,14 @@ h1 {
   overflow-y: auto;
 }
 
+.items p {
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: .75em;
+  width: max-content;
+}
+
 .accordion {
   background-color: #9ea6a2;
   cursor: pointer;
@@ -116,6 +124,9 @@ h1 {
   border: none;
   border-bottom: 2px solid #cedad9;
   outline: none;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .accordion:hover {
@@ -143,6 +154,7 @@ section img {
   height: 100px;
   padding: 2px;
   margin: .5em;
+  margin-bottom: .25em;
   border: 2px dashed #cedad9;
 }
 
@@ -160,18 +172,22 @@ section img {
   background-color: #9ea6a2;
   padding: .5em 0;
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly;
+  margin: auto; */
+  justify-content: center;
 }
 
 .done button {
   background-color: #cedad9;
   cursor: pointer;
-  padding: 5px;
+  padding: .25em 1em;
   border: none;
   outline: none;
   /* width: 50px; */
   /* margin-left: auto; */
+  margin: 0 .25em;
   border: 2px solid #6e7a73;
+  min-width: 70px;
 }
 
 footer {
@@ -191,10 +207,7 @@ footer a {
   z-index: 3;
 }
 
-.display {
-  background-color: #2d2f2f;
-}
-
+/*STYLE FOR DISPLAY PAGE*/
 .display header {
   position: absolute;
   top: 1.5rem;
@@ -213,11 +226,31 @@ footer a {
 }
 
 .display .view {
+  background-color: #2d2f2f;
   width: 100vw;
   height: 100vh;
   border: none;
 }
 
+.display .box {
+  opacity: 0;
+  background-color: white;
+}
+
+/*
+.display footer {
+  left: 0;
+  margin: auto;
+} */
 .tiles {
   display: none;
+}
+
+/*STYLE FOR WHEN INDEX IS IN DISPLAY MODE*/
+.displaymode .items, .displaymode .done {
+  display: none;
+}
+
+.displaymode .view {
+  width: 80vw;
 }

@@ -1,7 +1,7 @@
 'use strict';
 console.log('reading js');
-// import * as m from '/des157-g/prototype2/modulefunc.js'; //for github
-import * as m from '/modulefunc.js'; //for local
+import * as m from '/des157-g/prototype2/modulefunc.js'; //for github
+// import * as m from '/modulefunc.js'; //for local
 const acc = document.querySelectorAll('.accordion');
 const but = document.querySelectorAll('.mode button');
 const inner = document.querySelector('.inner');
@@ -13,6 +13,7 @@ var dragged,
   storeTile;
 var rotateAmt = 0;
 const storage = window.localStorage;
+var display;
 
 window.addEventListener('load', function() {
   m.getLocal();
@@ -33,9 +34,52 @@ document.querySelector('#reset').addEventListener('click', function() {
 });
 
 document.querySelector('#display').addEventListener('click', function() {
-  window.open('display.html', '_blank');
+  console.log('in display');
+  document.querySelector('body').className = 'displaymode';
+  console.log(document.querySelector('body').className);
+  window.open('display.html');
+  //display = window.open('display.html', 'display', 'height=600, width=500, toolbar');
+  var boxes = document.querySelectorAll('.box');
+  storage.setItem('show', ''); //blank entry to add too
+  storage.setItem('hide', '');
+
+  for (var i = 0; i < boxes.length; i++) {
+    boxes[i].style.opacity = .5;
+    boxes[i].addEventListener('click', show);
+  }
+
+  for (var i = 0; i < m.tiles.length; i++) {
+    m.tiles[i].removeEventListener('click', selectTile);
+  }
 });
 
+function show() {
+  console.log('showing ' + event.currentTarget.id);
+  event.currentTarget.style.opacity = 1;
+  event.currentTarget.removeEventListener('click', show);
+  event.currentTarget.addEventListener('click', hide);
+  //update storage
+  if (storage.getItem('show') != '') {
+    storage.setItem('show', storage.getItem('show') + ',' + event.currentTarget.id);
+  } else {
+    storage.setItem('show', storage.getItem('show') + event.currentTarget.id);
+  }
+  //storage.setItem('changed', 'true');
+}
+
+function hide() {
+  console.log('hiding ' + event.currentTarget.id);
+  event.currentTarget.style.opacity = .5;
+  event.currentTarget.removeEventListener('click', hide);
+  event.currentTarget.addEventListener('click', show);
+  //update storage
+  if (storage.getItem('hide') != '') {
+    storage.setItem('hide', storage.getItem('hide') + ',' + event.currentTarget.id);
+  } else {
+    storage.setItem('hide', storage.getItem('hide') + event.currentTarget.id);
+  }
+  //storage.setItem('changed', 'true');
+}
 //ACCORDION MENU
 for (var i = 0; i < acc.length; i++) {
   acc[i].addEventListener('click', function() {
@@ -272,15 +316,20 @@ function deleteTile() {
     for (var i = 0; i < parent.children.length; i++) {
       parent.children[i].style.top = (-100 * i) + 'px';
     } //fix offset
-    var store = '';
-    items.splice(index, 1); //remove item to delete
-    store = items[0];
-    for (var i = 1; i < items.length; i++) {
-      store += ',' + items[i];
-    }
-    console.log(store);
+    var store = removeItem(items, index);
     storage.setItem(parent.id, store);
   } else { //no children remove storage
     storage.removeItem(parent.id);
   }
+}
+
+function removeItem(items, index) {
+  var store = '';
+  items.splice(index, 1); //remove item to delete
+  store = items[0];
+  for (var i = 1; i < items.length; i++) {
+    store += ',' + items[i];
+  }
+  console.log(store);
+  return store;
 }

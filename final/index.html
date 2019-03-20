@@ -20,8 +20,8 @@
   </header>
   <main>
     <nav class="mode">
-      <button id="active"><i class="fas fa-mouse-pointer"></i></button>
-      <button><i class="fas fa-arrows-alt"></i></button>
+      <button id="active" title="Select and Move Tiles"><i class="fas fa-mouse-pointer"></i></button>
+      <button title="Pan Map"><i class="fas fa-arrows-alt"></i></button>
     </nav>
     <div class="view">
       <div class="inner">
@@ -255,17 +255,41 @@
       <div class="items">
         <button class="accordion"><i class="fas fa-caret-down"></i> Walls</button>
         <section class="first">
-          <img class="replace" src="images/wall.svg" alt="single wall" id="single">
-          <img class="replace" src="images/corner.svg" alt=" corner wall" id="corner">
-          <img class="replace" src="images/box.svg" alt="u wall" id="u">
-          <img class="replace" src="images/parallel.svg" alt="parallel wall" id="parallel">
+          <div>
+            <img class="replace" src="images/wall.svg" alt="single wall" id="single" title="Drag me">
+            <p>Single Wall</p>
+          </div>
+          <div>
+            <img class="replace" src="images/corner.svg" alt=" corner wall" id="corner" title="Drag me">
+            <p>Corner Wall</p>
+          </div>
+          <div>
+            <img class="replace" src="images/box.svg" alt="u wall" id="u" title="Drag me">
+            <p>U-Shaped Wall</p>
+          </div>
+          <div>
+            <img class="replace" src="images/parallel.svg" alt="parallel wall" id="parallel" title="Drag me">
+            <p>Parallel Walls</p>
+          </div>
         </section>
         <button class="accordion"><i class="fas fa-caret-right"></i> Doors</button>
         <section class="doors">
-          <img class="layer" src="images/door.svg" alt="door" id="door">
-          <img class="layer" src="images/arch.svg" alt="archway" id="arch">
-          <img class="layer" src="images/locked.svg" alt="locked door" id="lock">
-          <img class="layer" src="images/window.svg" alt="window" id="window">
+          <div>
+            <img class="layer" src="images/door.svg" alt="door" id="door" title="Drag me">
+            <p>Door</p>
+          </div>
+          <div>
+            <img class="layer" src="images/arch.svg" alt="archway" id="arch" title="Drag me">
+            <p>Archway</p>
+          </div>
+          <div>
+            <img class="layer" src="images/locked.svg" alt="locked door" id="lock" title="Drag me">
+            <p>Locked Door</p>
+          </div>
+          <div>
+            <img class="layer" src="images/window.svg" alt="window" id="window" title="Drag me">
+            <p>Window</p>
+          </div>
         </section>
         <button class="accordion"><i class="fas fa-caret-right"></i> Stairs</button>
         <section>
@@ -276,9 +300,9 @@
         </section>
       </div>
       <div class="done">
-        <button type="reset" id="reset">Reset</button>
-        <button>Save to PDF</button>
-        <button id="display">Switch to Display</button>
+        <button type="reset" id="reset" title="Removes Tiles on Map">Reset</button>
+        <button title="Coming Soon">Save PDF</button>
+        <button id="display" title="Displays Map for Players">Switch to Display</button>
       </div>
     </nav>
 
