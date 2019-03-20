@@ -8,7 +8,8 @@ import {
 //   startPan,
 //   endPan,
 //   storage
-// } from '/modulefunc.js'; //for local
+// }
+// from '/modulefunc.js'; //for local
 
 const inner = document.querySelector('.inner');
 
