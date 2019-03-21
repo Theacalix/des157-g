@@ -14,7 +14,7 @@ body {
   /* background-color: #cedad9; */
   background-color: white;
   font-family: 'Roboto Condensed', sans-serif;
-  background-image: url("images/background.svg");
+  background-image: url("images/background3.svg");
 }
 
 main {
@@ -119,7 +119,7 @@ h1 {
 }
 
 .box {
-  border: 1px solid #DBDBDB;
+  border: 1px solid #909091;
   width: 100px;
   height: 100px;
 }
@@ -155,7 +155,7 @@ h1 {
   outline: none;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .accordion:hover {
