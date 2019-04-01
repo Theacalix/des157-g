@@ -127,6 +127,7 @@ but[1].addEventListener('click', function() { //pan
     document.removeEventListener('dragleave', leaveDrag);
     document.removeEventListener('drop', drop);
     document.removeEventListener('click', delesectTile);
+    console.log('tiles' + m.tiles);
     for (var i = 0; i < m.length; i++) {
       m.tiles[i].removeEventListener('click', selectTile);
     }

@@ -1,7 +1,8 @@
 import {
   getLocal,
   startPan,
-  endPan
+  endPan,
+  storage
 } from '/des157-g/prototype2/modulefunc.js'; //for github
 // import {
 //   getLocal,
